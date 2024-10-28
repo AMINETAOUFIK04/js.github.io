@@ -1,57 +1,93 @@
+html {
+    scroll-behavior: smooth;
+}
+
+p{
+    text-align: center;
+}
+
 body {
     background-color: #dedede;
+    padding: 5px;
+    margin: 15px;
+    font-size: 25px;
+    font-family: Arial, sans-serif;
 }
 
 h1 {
     text-align: center;
-    font-family: Arial, sans-serif;
-    font-size: 32px;
+    font-size: 1.95em;
 }
 
-a {
-    color: #000;
-    text-decoration: none;
-    font-family: Arial, sans-serif;
+.grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Une colonne par défaut */
+    gap: 10px; /* Espace de 10px entre les éléments */
 }
 
-p {
-   font-size: 25px;
-   font-family: Arial, sans-serif;
-   text-align: center;
+figure {
+    margin: 0; /* Supprimer le margin par défaut des figures */
 }
 
 img {
+    border: 5px solid rgb(0, 0, 0);
+    border-radius: 35px; /* Circulaire pour la vue tablette */
     width: 100%;
+    height: auto; /* Maintenir le ratio */
 }
 
-div img {
-    width: 150px;
-    height: auto; 
-    max-height: 30vh; 
-    display: block;
-    margin: auto;
+.label {
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
-div {
-    display: inline-block;
-    width: 24%;
-    margin: 5px;
-    padding: 2px;
-}
-
-
-@media all and (min-width: 772px) {
-    div {
-        width: 45%; 
+/* Vue tablette */
+@media (min-width: 772px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr); /* Deux colonnes */
     }
-    div img {
-        max-height: 30vh; 
+
+    figure {
+        border-radius: 50%; /* Bordures circulaires */
+    }
+
+    figure:last-child {
+        grid-column: span 2; /* La dernière figure occupe deux colonnes */
     }
 }
 
+/* Vue grand écran */
+@media (min-width: 992px) {
+    .grid {
+        grid-template-columns: repeat(3, 1fr); /* Trois colonnes */
+    }
 
-@media all and (min-width: 998px) {
-    div {
-        width: 30%; 
+    figure {
+        border-radius: 0; /* Supprimer le rayon de bordure */
+    }
+
+    /* Exemple pour faire occuper une figure sur trois deux colonnes */
+    figure:nth-child(3) {
+        grid-column: span 2; /* La troisième figure occupe deux colonnes */
+    }
+}
+
+/* Requête média pour prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto; /* Supprimer le comportement de défilement */
+    }
+}
+
+/* Palette de couleurs sombre */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #333; /* Couleur de fond sombre */
+    }
+
+    figure {
+        background-color: #555; /* Couleur de fond sombre pour les figures */
+        color: #ffeb3b; /* Couleur de police claire */
+        border-color: #000; /* Bordure noire */
     }
 }
